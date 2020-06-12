@@ -1,27 +1,7 @@
-import React from 'react';
-import { LoginPage } from './Containers/LoginPage'
-import { ListPage } from './Containers/ListPage'
-import { RegisterPage } from './Containers/RegisterPage'
-import { Switch, Route, BrowserRouter } from 'react-router-dom'
+  
+import React from "react";
+import Routes from "./routes";
+import "./styles/global";
 
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/'>
-            <LoginPage />
-          </Route>
-          <Route path='/list'>
-            <ListPage />
-          </Route>
-          <Route path='/register' >
-            <RegisterPage />
-          </Route >
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
-}
-
+const App = () => <Routes />;
 export default App;
