@@ -8,13 +8,14 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.form`
-    width: 400px;
-    background: white;
-    margin: 80px auto;
-    padding: 64px;
-    display: flex;
-    flex-direction:column;
-    align-items: center;
+    max-width: 400px;
+    // background: white;
+    // margin: 64px auto;
+    // padding: 64px;
+    // margin-top:0px;
+    // display: flex;
+    // flex-direction:column;
+    // align-items: center;
     
     // * {
     //     box-sizing: border-box;
@@ -32,8 +33,8 @@ export const Form = styled.form`
     // }
 
     img{
-        width: 100px;
-        margin: 10px 0 40px;
+        width: 80px;
+        margin-left: 50%;
     }
 
     p {
@@ -45,20 +46,37 @@ export const Form = styled.form`
         text-align:center;
     }
 
+    .field-group{
+        max-width: 400px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 36px;
+    }
+    
     input {
         flex: 1;
         outline: none;
-        height: 46px;
+        //height: 46px;
         margin-bottom: 15px;
         padding: 16px 24px;
         color: #777;
         font-size: 15px;
-        width: 88%;
+        width: 100%;
         border: 1px solid #ddd;
         border-radius: 8px;
-        &::placeholder{
-            color: #999;
-        }
+        // &::placeholder{
+        //     color: #999;
+        // }
+    }
+
+    label{
+        font-size:14px
+        margin-bottom: 8px;
+    }
+
+    .field-group .field + .field{
+        margin-left: 24px;
+
     }
 
     button {
@@ -68,19 +86,14 @@ export const Form = styled.form`
         height: 56px;
         border: 0;
         border-radius: 8px;
-        width: 100%;
+        width: 450px;
         transition: background-color 400ms;
         outline:none;
     }
     button:hover{
         background-color: #c266ff;
     }
-    hr{
-        margin: 20px 0;
-        border: none;
-        border-bottom: 1px solid #cdcdcd;
-        width: 100%
-    }
+
     a {
         font-size: 16px;
         color: #999;

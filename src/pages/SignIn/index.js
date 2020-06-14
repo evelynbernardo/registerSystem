@@ -49,7 +49,7 @@ export class SignIn extends Component {
                     placeholder="Senha"
                     onChange={e => this.setState({ password: e.target.value })}
                 />
-                <button type="submit">Entrar</button>
+                <button type="submit" Link to ="/register">Entrar</button>
                 <hr />
                 <Link to="/signup">Criar conta grátis</Link>
             </Form>
