@@ -3,17 +3,19 @@ import { Link, withRouter } from "react-router-dom";
 import Logo from "../../Assets/Logo.png";
 import api from "../../services/api";
 import { Form, Container } from "./styles";
-import { cpfMask } from './mask'
+import { cpfMask, cepMask } from './mask'
 
 class Register extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {cpf:''}
+    //this.state = {cpf:''}
+    this.state = {cep: ''}
     this.handleChange = this.handleChange.bind(this)
   }
     handleChange(e){
-      this.setState({ cpf: cpfMask(e.target.value)})
+      //this.setState({ cpf: cpfMask(e.target.value)})
+      this.setState({ cep: cepMask(e.target.value)})
     }
 
   state = {
@@ -32,21 +34,22 @@ class Register extends Component {
     e.preventDefault();
     const { name, cpf, email, cep, rua, numero, bairro, cidade} = this.state;
     if (!name || !cpf || !email || !cep || !rua || !numero || !bairro || !cidade) {
-      this.setState({ error: "Preencha todos os dados para se cadastrar" });
+      alert("Preencha todos os dados para se cadastrar" );
     } else {
       try {
         await api.post("/users", { name, cpf, email, cep, rua, numero, bairro, cidade });
         this.props.history.push("/");
       } catch (err) {
         console.log(err);
-        this.setState({ error: "Ocorreu um erro ao registrar sua conta. T.T" });
+        alert("Ocorreu um erro ao registrar sua conta. T.T" );
       }
       alert("Registrado");
     }
   };
 
   render() {
-    const { cpf } = this.state
+    //const { cpf } = this.state
+    const { cep } = this.state
     return (
       <Container>
         <Form onSubmit={this.handleSignUp}>
@@ -68,8 +71,8 @@ class Register extends Component {
               maxLength='14'
               type="text"
               placeholder="CPF"
-              value={cpf}
-              onChange={this.handleChange}
+              //value={cpf}
+              //onChange={this.handleChange}
             />
           </div>
           
@@ -87,8 +90,9 @@ class Register extends Component {
               <input
               type="text"
               placeholder="CEP"
-              min="4"
-              onChange={e => this.setState({ cep: e.target.value })}
+              maxLength="9"
+              value={cep}
+              onChange={this.handleChange}
             />
           </div>
           
