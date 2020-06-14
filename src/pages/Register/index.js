@@ -1,30 +1,41 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-
 import Logo from "../../Assets/Logo.png";
-
 import api from "../../services/api";
-
 import { Form, Container } from "./styles";
+import { cpfMask } from './mask'
 
 class Register extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {cpf:''}
+    this.handleChange = this.handleChange.bind(this)
+  }
+    handleChange(e){
+      this.setState({ cpf: cpfMask(e.target.value)})
+    }
+
   state = {
-    username: "",
+    name: "",
+    cpf: "",
     email: "",
-    password: "",
+    cep:"",
+    rua:"",
+    numero:"",
+    bairro:"",
+    cidade:"",
     error: ""
   };
 
   handleSignUp = async e => {
     e.preventDefault();
-    const { username, email, password } = this.state;
-    if (!username || !email || !password) {
+    const { name, cpf, email, cep, rua, numero, bairro, cidade} = this.state;
+    if (!name || !cpf || !email || !cep || !rua || !numero || !bairro || !cidade) {
       this.setState({ error: "Preencha todos os dados para se cadastrar" });
-    } else if(password.length<4) {
-      this.setState({ error: "Por insira uma senha com no minimo 4 caracteres" });
     } else {
       try {
-        await api.post("/users", { username, email, password });
+        await api.post("/users", { name, cpf, email, cep, rua, numero, bairro, cidade });
         this.props.history.push("/");
       } catch (err) {
         console.log(err);
@@ -35,6 +46,7 @@ class Register extends Component {
   };
 
   render() {
+    const { cpf } = this.state
     return (
       <Container>
         <Form onSubmit={this.handleSignUp}>
@@ -52,9 +64,12 @@ class Register extends Component {
           <div class="field">
             {/* <label for="name">CPF</label> */}
             <input
+              name='cpf'
+              maxLength='14'
               type="text"
               placeholder="CPF"
-              onChange={e => this.setState({ cpf: e.target.value })}
+              value={cpf}
+              onChange={this.handleChange}
             />
           </div>
           
