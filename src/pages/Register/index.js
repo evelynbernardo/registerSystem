@@ -4,22 +4,21 @@ import Logo from "../../Assets/Logo.png";
 import api from "../../services/api";
 import { Form, Container } from "./styles";
 import { cpfMask, cepMask } from './mask'
+import axios from 'axios'
 
 class Register extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      name: "",
+      nome: "",
       cpf: "",
       email: "",
-      endereco: {
-        cep:"",
-        logradouro:"",
-        numero:"",
-        bairro:"",
-        localidade:"",
-      }
+      cep:"",
+      logradouro:"",
+      numero:"",
+      bairro:"",
+      localidade:"",
     }
   }
   
@@ -27,12 +26,9 @@ class Register extends Component {
     return await fetch(`http://viacep.com.br/ws/${cep}/json/`)
     .then(res => res.json())
     .then(cepResult => {
-        this.setState({loading:false})
-        console.log("cepResult", cepResult)
         return cepResult
     })
     .catch(error => {
-        this.setState({loading: false})
         return alert("CEP Inválido");
     })
   }
@@ -41,7 +37,6 @@ class Register extends Component {
     const { name, value } = field
     this.setState({[name]: value})
     if(name === 'cep' && value.length === 8){
-        this.setState({loading:true})
         const cepObject = await this.verificaCEP(value)
         if(cepObject.erro){
             return alert("CEP Inválido");
@@ -64,39 +59,41 @@ handleBlur = async value => {
 }
 
   handleSignUp = async e => {
-    //e.preventDefault();    
-    const { name, cpf, email, cep, logradouro, numero, bairro, localidade} = this.state;
-    if (!name || !cpf || !email || !cep || !logradouro || !numero || !bairro || !localidade) {
+    e.preventDefault();    
+    const { nome, cpf, email, cep, logradouro, numero, bairro, localidade} = this.state;
+    if (!nome || !cpf || !email || !cep || !logradouro || !numero || !bairro || !localidade) {
       alert("Preencha todos os dados para se cadastrar" );
     } else {
       try {
-        await api.post("/users", { name, cpf, email, cep, logradouro, numero, bairro, localidade });
-        this.props.history.push("/");
+        await axios.post(`http://localhost:5000/usuarios`, this.state);
+        //this.props.history.push("/");
+        //console.log(response)
+        alert("Registrado");
       } catch (err) {
         console.log(err);
         alert("Ocorreu um erro ao registrar sua conta. T.T" );
-      }
-      alert("Registrado");
+      }      
     }
   };
 
   render() { 
-    const { name, cpf, email, cep, logradouro, numero, bairro, localidade } = this.state
+    const { nome, cpf, email, cep, logradouro, numero, bairro, localidade } = this.state
 
     return (
       <Container>
         <Form onSubmit={this.handleSignUp}>
           <img src={Logo} alt="Logo" />
           {this.state.error && <p>{this.state.error}</p>}
-          <div class="field">
+          <div className="field">
             <input
+              name='nome'
               type="text"
               placeholder="Nome"
-              onChange={e => this.setState({ name: e.target.value })}
+              onChange={e => this.handleChange(e.target)}
             />
           </div>
           
-          <div class="field">
+          <div className="field">
             <input
               name='cpf'
               maxLength='14'
@@ -107,7 +104,7 @@ handleBlur = async value => {
             />
           </div>
           
-          <div class="field">
+          <div className="field">
             <input
               type="email"
               placeholder="Endereço de e-mail"
@@ -115,29 +112,29 @@ handleBlur = async value => {
             />
           </div>
           
-          <div class="field">
+          <div className="field">
             <input name="cep" placeholder="CEP" value={cep} onChange={e => this.handleChange(e.target)} onBlur={e => this.handleBlur(e.target.value)} maxLength={9}/>
           </div>
           
-          <div class="field-group">
-            <div class="field">
+          <div className="field-group">
+            <div className="field">
               <input name="logradouro" placeholder="Rua" value={logradouro} onChange={e => this.handleChange(e.target)}/>
             </div>
-            <div class="field">
+            <div className="field">
               <input name="numero" placeholder="N" value={numero} onChange={e => this.setState({ numero: e.target.value })}
               />
             </div>
           </div>
           
-          <div class="field">
+          <div className="field">
             <input name="bairro" placeholder="Bairro" value={bairro} onChange={e => this.handleChange(e.target)}/>
           </div>
 
-          <div class="field">
+          <div className="field">
             <input name="localidade" placeholder="Cidade" value={localidade} onChange={e => this.handleChange(e.target)}/>
           </div>
           
-          <button type="submit" onClick={this.verificaCEP}>Registrar</button>
+          <button type="submit">Registrar</button>
         </Form>
       </Container>
     );

@@ -52,9 +52,15 @@ export const Form = styled.form`
     border-radius: 8px;
     width: 100%;
     cursor:pointer;
+    outline: none;
     transition: background-color 400ms;
   }
 
+  h3 {
+    color: white;
+    font-size: 16px;
+    font-weight: normal;
+  }
   button:hover{
     background-color: #c266ff;
   }
@@ -66,7 +72,7 @@ export const Form = styled.form`
     width: 100%;
   }
   a {
-    font-size: 16;
+    font-size: 16px;
     font-weight: bold;
     color: #999;
     text-decoration: none;

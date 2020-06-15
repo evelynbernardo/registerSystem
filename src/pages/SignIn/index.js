@@ -23,7 +23,7 @@ export class SignIn extends Component {
       try {
         const response = await api.post("/sessions", { email, password });
         login(response.data.token);
-        this.props.history.push("/app");
+        this.props.history.push("/register");
       } catch (err) {
         this.setState({
           error:
@@ -36,8 +36,9 @@ export class SignIn extends Component {
   render() {
     return (
         <Container>
+            {/* <Form> */}
             <Form onSubmit={this.handleSignIn}>
-                <img src={Logo} alt="Airbnb logo" />
+                <img src={Logo} alt="Logo" />
                     {this.state.error && <p>{this.state.error}</p>}
                 <input
                     type="email"
@@ -49,7 +50,12 @@ export class SignIn extends Component {
                     placeholder="Senha"
                     onChange={e => this.setState({ password: e.target.value })}
                 />
-                <button type="submit" Link to ="/register">Entrar</button>
+                
+                  <button type="submit">
+                    <Link to="/register">
+                      <h3>Entrar</h3>
+                    </Link>
+                  </button>
                 <hr />
                 <Link to="/signup">Criar conta grátis</Link>
             </Form>

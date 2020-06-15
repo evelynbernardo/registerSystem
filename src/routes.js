@@ -5,6 +5,7 @@ import { isAuthenticated } from "./services/auth";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn"
 import Register from "./pages/Register"
+import List from "./pages/List"
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
     <Route 
@@ -26,7 +27,7 @@ const Routes = () => (
           <Route path="/signup" component={SignUp} />
           {/* COLOCAR PRIVATEROUTE */}
           <Route path="/register" component={Register} />
-          <Route path="/list" component={() => <h1>List</h1>} />
+          <Route path="/list" component={List} />
           <Route path="*" component={() => <h1>Page not found</h1>} /> 
         </Switch>
     </BrowserRouter>

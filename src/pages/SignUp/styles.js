@@ -69,6 +69,7 @@ export const Form = styled.form`
         border: 0;
         border-radius: 8px;
         width: 100%;
+        cursor: pointer;
         transition: background-color 400ms;
         outline:none;
     }
