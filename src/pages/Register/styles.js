@@ -1,10 +1,11 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    // display:flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    // height: 100vh;
 `;
 
 export const Form = styled.form`
@@ -12,10 +13,11 @@ export const Form = styled.form`
     // background: white;
     // margin: 64px auto;
     // padding: 64px;
-    // margin-top:0px;
-    // display: flex;
-    // flex-direction:column;
-    // align-items: center;
+    margin-top: 2vh;
+    margin-left: 33vw;  
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
     
     // * {
     //     box-sizing: border-box;

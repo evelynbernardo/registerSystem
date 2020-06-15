@@ -5,6 +5,7 @@ import api from "../../services/api";
 import { Form, Container } from "./styles";
 import { cpfMask, cepMask } from './mask'
 import axios from 'axios'
+import {MainHeader} from '../../Components/header/header'
 
 class Register extends Component {
   constructor(props) {
@@ -81,8 +82,8 @@ handleBlur = async value => {
 
     return (
       <Container>
-        <Form onSubmit={this.handleSignUp}>
-          <img src={Logo} alt="Logo" />
+        <MainHeader />
+        <Form onSubmit={this.handleSignUp}>          
           {this.state.error && <p>{this.state.error}</p>}
           <div className="field">
             <input
