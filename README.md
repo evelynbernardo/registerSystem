@@ -14,8 +14,8 @@
 
 ### TO DO
 
-[ ] Consumir a lista da API (atualmente é consumido a partir de um mock)
-[ ] Permitir busca por nome
-[ ] Editar a lista
+- [ ] Consumir a lista da API (atualmente é consumido a partir de um mock)
+- [ ] Permitir busca por nome
+- [ ] Editar a lista
 
 
