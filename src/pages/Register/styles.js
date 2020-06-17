@@ -10,29 +10,11 @@ export const Container = styled.div`
 
 export const Form = styled.form`
     max-width: 400px;
-    // background: white;
-    // margin: 64px auto;
-    // padding: 64px;
     margin-top: 2vh;
     margin-left: 33vw;  
     display: flex;
     flex-direction:column;
     justify-content: center;
-    
-    // * {
-    //     box-sizing: border-box;
-    //     padding: 0;
-    //     margin: 0;
-    //     outline: 0;
-    //   }
-    //   body, html {
-    //     background: #eee;
-    //     font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
-    //     text-rendering: optimizeLegibility !important;
-    //     -webkit-font-smoothing: antialiased !important;
-    //     height: 100%;
-    //     width: 100%;
-    // }
 
     img{
         width: 80px;
@@ -58,7 +40,6 @@ export const Form = styled.form`
     input {
         flex: 1;
         outline: none;
-        //height: 46px;
         margin-bottom: 15px;
         padding: 16px 24px;
         color: #777;
@@ -66,9 +47,7 @@ export const Form = styled.form`
         width: 100%;
         border: 1px solid #ddd;
         border-radius: 8px;
-        // &::placeholder{
-        //     color: #999;
-        // }
+
     }
 
     label{

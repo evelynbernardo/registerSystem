@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const Table = styled.table`
     display: flex;
     flex-direction: column;
-    //overflow-x: auto;
     max-width: 80vw;
     margin-left:10vw;
     margin-top: 10vh;
@@ -22,13 +21,14 @@ export const Table = styled.table`
             text-align: center;
             padding: 0px 20px;
             border-bottom: solid 1px #e4e4e4;
-            // &:last-child{
-            //     text-align: right;
-            //     }
-            //     img{
-            //       cursor: pointer;
-            //     }
-            // }
+            &:last-child{
+                text-align: right;
+                }
+                img{
+                  cursor: pointer;
+                }
+            }
         }
+
     }
 `;

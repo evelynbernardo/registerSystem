@@ -4,6 +4,7 @@ import { Table } from './styles'
 import axios from 'axios'
 import { USUARIOS } from './mock'
 import {MainHeader} from '../../Components/header/header'
+import deleteButton from '../../Assets/deleteButton.png'
 
 export class FilterableUserTable extends Component{
     constructor(props){
@@ -66,21 +67,28 @@ class SearchBar extends Component {
 }
 
 class UserRow extends Component{
+    
     render(){
         const user = this.props.user
 
+        function deleteRow(event){
+            var row = event.target.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        };
         return (
             <tr>
                 <td>{user.nome}</td>
                 <td>{user.cpf}</td>
                 <td>{user.email}</td>
                 <td>{user.logradouro}</td>
+                <td><img src={deleteButton} alt='delete button' onClick={deleteRow}/></td>
             </tr>
         )
     }
 }
 
 export class UserTable extends Component{
+
     render(){
         const filterText = this.props.filterText
 
@@ -94,13 +102,14 @@ export class UserTable extends Component{
         })
 
         return (
-            <Table>
+            <Table id="mytable">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>CPF</th>
                         <th>Email</th>
                         <th>Cidade</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>{rows}</tbody>

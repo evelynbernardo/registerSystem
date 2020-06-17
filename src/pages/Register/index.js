@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import Logo from "../../Assets/Logo.png";
-import api from "../../services/api";
 import { Form, Container } from "./styles";
-import { cpfMask, cepMask } from './mask'
+import { cpfMask } from './mask'
 import axios from 'axios'
 import {MainHeader} from '../../Components/header/header'
+import { ToastContainer,toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 class Register extends Component {
   constructor(props) {
@@ -63,16 +63,14 @@ handleBlur = async value => {
     e.preventDefault();    
     const { nome, cpf, email, cep, logradouro, numero, bairro, localidade} = this.state;
     if (!nome || !cpf || !email || !cep || !logradouro || !numero || !bairro || !localidade) {
-      alert("Preencha todos os dados para se cadastrar" );
+      toast.warn("Preencha todos os dados para se cadastrar" );
     } else {
       try {
         await axios.post(`http://localhost:5000/usuarios`, this.state);
-        //this.props.history.push("/");
-        //console.log(response)
-        alert("Registrado");
+        toast.success("Registrado");
       } catch (err) {
         console.log(err);
-        alert("Ocorreu um erro ao registrar sua conta. T.T" );
+        toast.error("Ocorreu um erro ao registrar sua conta. T.T" );
       }      
     }
   };
@@ -83,6 +81,7 @@ handleBlur = async value => {
     return (
       <Container>
         <MainHeader />
+        <ToastContainer />
         <Form onSubmit={this.handleSignUp}>          
           {this.state.error && <p>{this.state.error}</p>}
           <div className="field">

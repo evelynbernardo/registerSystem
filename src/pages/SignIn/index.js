@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-
+import axios from 'axios'
 import Logo from "../../Assets/Logo.png";
-import api from "../../services/api";
 import { login } from "../../services/auth";
-
+import { ToastContainer,toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { Form, Container } from "./styles";
 
 export class SignIn extends Component {
@@ -18,17 +18,17 @@ export class SignIn extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     if (!email || !password) {
-      this.setState({ error: "Preencha e-mail e senha para continuar!" });
-    } else {
+      toast.error("Preencha e-mail e senha para continuar!");
+    } else if( password.length<4){
+      toast.warn("A senha deve ter no mínimo 4 dígitos");
+    }    
+    else {
       try {
-        const response = await api.post("/sessions", { email, password });
+        const response = await axios.post(`http://localhost:5000/usuarios`, { email, password });
         login(response.data.token);
         this.props.history.push("/register");
       } catch (err) {
-        this.setState({
-          error:
-            "Houve um problema com o login, verifique suas credenciais. T.T"
-        });
+        toast.error("Houve um problema com o login, verifique suas credenciais. T.T");
       }
     }
   };
@@ -36,10 +36,10 @@ export class SignIn extends Component {
   render() {
     return (
         <Container>
+          <ToastContainer />
             {/* <Form> */}
             <Form onSubmit={this.handleSignIn}>
                 <img src={Logo} alt="Logo" />
-                    {this.state.error && <p>{this.state.error}</p>}
                 <input
                     type="email"
                     placeholder="Endereço de e-mail"
@@ -52,9 +52,7 @@ export class SignIn extends Component {
                 />
                 
                   <button type="submit">
-                    <Link to="/register">
                       <h3>Entrar</h3>
-                    </Link>
                   </button>
                 <hr />
                 <Link to="/signup">Criar conta grátis</Link>

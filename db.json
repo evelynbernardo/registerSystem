@@ -11,6 +11,94 @@
       "uf": "AL",
       "numero": "54",
       "id": 1
+    },
+    {
+      "nome": "dcfsdf",
+      "cpf": "123.456.789-65",
+      "email": "dscfsd@dfv.com",
+      "cep": "57601-140",
+      "logradouro": "Avenida Sete de Setembro",
+      "bairro": "São Cristóvão",
+      "localidade": "Palmeira dos Índios",
+      "uf": "AL",
+      "numero": "54",
+      "id": 2
+    },
+    {
+      "email": "bernardoevelynbarros@gmail.com",
+      "password": "edfewf",
+      "id": 3
+    },
+    {
+      "email": "bernardoevelynbarros@gmail.com",
+      "password": "1234",
+      "id": 4
+    },
+    {
+      "email": "bernardoevelynbarros@gmail.com",
+      "password": "1234",
+      "id": 5
+    },
+    {
+      "email": "bernardoevelynbarros@gmail.com",
+      "password": "edfewf",
+      "id": 6
+    },
+    {
+      "email": "bernardoevelynbarros@gmail.com",
+      "password": "1234",
+      "id": 7
+    },
+    {
+      "email": "bernardoevelynbarros@gmail.com",
+      "password": "edfewf",
+      "id": 8
+    },
+    {
+      "email": "bernardoevelynbarros@gmail.com",
+      "password": "edfewf",
+      "id": 9
+    }
+  ],
+  "users": [
+    {
+      "ewfewf": "",
+      "id": 1
+    },
+    {
+      "username": "drgrg",
+      "email": "bernardo@gmail.com",
+      "password": "1234",
+      "error": "",
+      "id": 2
+    },
+    {
+      "username": "efewf",
+      "email": "bernardo@gmail.com",
+      "password": "1234",
+      "error": "",
+      "id": 3
+    },
+    {
+      "username": "efewf",
+      "email": "bernardo@gmail.com",
+      "password": "1234",
+      "error": "",
+      "id": 4
+    },
+    {
+      "username": "efef",
+      "email": "bernardo@gmail.com",
+      "password": "1234",
+      "error": "",
+      "id": 5
+    },
+    {
+      "username": "defedf",
+      "email": "bernardo@gmail.com",
+      "password": "1234",
+      "error": "",
+      "id": 6
     }
   ]
 }
